@@ -16,12 +16,12 @@ docker compose -f compose.yaml up -d
   - для MongoDB - настроено два шарда, в каждом из которых по три реплики;
   - для redis - запущен один инстанс сервера;
 
-1. добавляем данные в БД, используя четвертый скрипт. В директории `sharding-repl-cache/scripts` выполняем скрипт:
+3. добавляем данные в БД, используя четвертый скрипт. В директории `sharding-repl-cache/scripts` выполняем скрипт:
 ```bash
 ./4_insert_data.sh
 ```
 
-1. проверить суммарное количество данных во всех шардах:
+4. проверить суммарное количество данных во всех шардах:
    1. Заходим в *router*
    ```bash
    docker exec -it mongos_router mongosh --port 27020
@@ -33,7 +33,7 @@ docker compose -f compose.yaml up -d
    db.helloDoc.countDocuments() 
    ```
 
-2. проверить количество данных в одной из реплик шарда 1:
+5. проверить количество данных в одной из реплик шарда 1:
    1. Заходим в реплику шарда 1:
    ```sh
    docker exec -it shard11 mongosh --port 27018
@@ -47,7 +47,7 @@ docker compose -f compose.yaml up -d
    db.helloDoc.countDocuments() 
    ```
 
-3. проверить количество данных в одной из реплик шарда 2:
+6. проверить количество данных в одной из реплик шарда 2:
    1. Заходим в реплику шарда 2:
    ```sh
    docker exec -it shard21 mongosh --port 27018
