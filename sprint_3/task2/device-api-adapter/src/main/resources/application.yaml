@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: device-api-adapter
+
+server:
+  port: 8081
+
+app:
+  kafka:
+    host: ${KAFKA_HOST:localhost}
+    port: ${KAFKA_PORT:9092}

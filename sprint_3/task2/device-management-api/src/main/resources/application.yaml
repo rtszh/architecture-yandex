@@ -1,0 +1,36 @@
+app:
+  kafka:
+    host: ${KAFKA_HOST:localhost}
+    port: ${KAFKA_PORT:9092}
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+
+
+spring:
+  application:
+    name: device-management-api
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://${POSTGRESQL_HOST:localhost}:5432/postgres
+    username: postgres
+    password: postgres
+  sql:
+    init:
+      mode: always
+#    driverClassName: org.postgresql.Driver
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE

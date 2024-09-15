@@ -1,0 +1,143 @@
+asyncapi: '2.6.0'
+info:
+  title: Device Management API
+channels:
+  device-register-data-request:
+    description: Channel for publishing requests for device data
+    subscribe:
+      summary: Publish request for get device info
+      operationId: DeviceRegisterDataRequestMessage
+      message:
+        oneOf:
+          - $ref: '#/components/messages/DeviceRegisterDataRequestMessage'
+  device-register-data-response:
+    publish:
+      summary: Message with info about registered device
+      operationId: DeviceRegisterDataResponseMessage
+      message:
+        oneOf:
+          - $ref: '#/components/messages/DeviceRegisterDataResponseMessage'
+  device-action-request:
+    description: Channel for publishing requests for device action
+    subscribe:
+      summary: Publish request to do action on device
+      operationId: deviceAction
+      message:
+        oneOf:
+          - $ref: '#/components/messages/DeviceActionMessage'
+  device-telemetry-request:
+    description: Channel for publishing request for telemetry data
+    subscribe:
+      summary: Publish request for telemetry data
+      operationId: DeviceTelemetryRequestMessage
+      message:
+        oneOf:
+          - $ref: '#/components/messages/DeviceActionMessage'
+  device-telemetry-response:
+    description: Channel for publishing telemetry data
+    publish:
+      summary: telemetry data
+      operationId: DeviceTelemetryResponseMessage
+      message:
+        oneOf:
+          - $ref: '#/components/messages/DeviceTelemetryResponseMessage'
+
+components:
+  schemas:
+    DeviceActionList:
+      properties:
+        action:
+          type: string
+        value:
+          type: array
+          items:
+            anyOf:
+              - type: string  
+    DeviceAction:
+      properties:
+        action:
+          type: string
+        value:
+          type: string
+  messages:
+    DeviceRegisterDataRequestMessage:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          accountId:
+            type: integer
+            format: int64
+            example: 12345678
+          serialNumber:
+            type: string
+            example: 12345678
+          messageId:
+            type: string
+    DeviceRegisterDataResponseMessage:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          accountId:
+            type: integer
+            format: int64
+            example: 12345678
+          serialNumber:
+            type: string
+            example: 12345678
+          name:
+            type: string
+            example: 12345678
+          description:
+            type: string
+            example: 12345678
+          deviceType:
+            type: string
+            example: 12345678
+          deviceActions:
+            type: array
+            items:
+              $ref: '#/components/schemas/DeviceAction'
+          messageId:
+            type: string
+    DeviceActionMessage:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          accountId:
+            type: integer
+            format: int64
+            example: 12345678
+          serialNumber:
+            type: string
+            example: 12345678
+          deviceAction:
+            $ref: '#/components/schemas/DeviceAction'
+          messageId:
+            type: string
+    DeviceActionMessage:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          accountId:
+            type: integer
+            format: int64
+            example: 12345678
+          serialNumber:
+            type: string
+            example: 12345678
+          messageId:
+            type: string
+    DeviceTelemetryResponseMessage:
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          data:
+            type: string
+            example: "{\"key\":\"value\"}"
+          messageId:
+            type: string

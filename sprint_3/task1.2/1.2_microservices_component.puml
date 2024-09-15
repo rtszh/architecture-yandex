@@ -1,0 +1,32 @@
+@startuml
+title DeviceManagement Api Component Diagram
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Container_Boundary(DeviceManagement, "") {
+  Container(DeviceManagementApi, "Device Management Api", "Java, Spring", "Processes user interactions with devices")
+  Container(DeviceManagementDatabase, "Device Management Database", "PostgreSQL", "Database for devices")
+  Container(DeviceManagementCache, "Device Management Cache", "Redis", "Cache for telemetry")
+}
+
+Container(DeviceManagementApi, "Web Application", "Java, Spring") {
+  Component(TelemetryController, "TelemetryController", "Get current telemetry")
+  Component(MutationController, "MutationController", "Mutate device state")
+  Component(RegistrationController, "RegistrationController", "Register new device")
+  Component(ScheduleController, "ScheduleController", "Manages schedules")
+  Component(ServiceLayer, "Service Layer", "Business logic")
+  Component(RepositoryLayer1, "Repository Layer1", "Device data access logic")
+  Component(RepositoryLayer2, "Repository Layer2", "Cache data access logic")
+}
+
+Rel(TelemetryController,ServiceLayer,"Calls business logic")
+Rel(MutationController,ServiceLayer,"Calls business logic")
+Rel(RegistrationController,ServiceLayer,"Calls business logic")
+Rel(ScheduleController,ServiceLayer,"Calls business logic")
+Rel(ServiceLayer,RepositoryLayer1,"Reads/Writes data")
+Rel(ServiceLayer,RepositoryLayer2,"Reads/Writes data")
+Rel(RepositoryLayer1,DeviceManagementDatabase,"Reads/Writes device data")
+Rel(RepositoryLayer2,DeviceManagementCache,"Reads/Writes cache data")
+@enduml

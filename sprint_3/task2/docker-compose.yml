@@ -1,0 +1,189 @@
+version: "3.3"
+services:
+# api
+  device-management-api:
+    build:
+      context: ./device-management-api
+    ports:
+      - "8080:8080"
+    environment:
+      POSTGRESQL_HOST: device-management-db
+      KAFKA_HOST: kafka-service
+      KAFKA_PORT: 9094
+      REDIS_HOST: redis_1
+      REDIS_PORT: 6379
+    networks:
+      - network-local
+
+  device-api-adapter:
+    build:
+      context: ./device-api-adapter
+    ports:
+      - "8081:8081"
+    environment:
+      KAFKA_HOST: kafka-service
+      KAFKA_PORT: 9094
+    networks:
+      - network-local
+
+  smart-home-monolith:
+    build:
+      context: ./smart-home-monolith
+    ports:
+      - "8082:8082"
+    environment:
+      POSTGRESQL_HOST: smart-home-monolith-db
+      KAFKA_HOST: kafka-service
+      KAFKA_PORT: 9094
+    networks:
+      - network-local
+
+# db
+  redis_1:
+    image: "redis:7.4"
+    container_name: redis_1
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_1_data:/data
+    command: [ "redis-server" ]
+    networks:
+      - network-local
+
+  device-management-db:
+    image: postgres:13
+    command: postgres -c 'max_connections=200'
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_device_management_api:/var/lib/postgresql/data
+    networks:
+      - network-local
+    environment:
+      POSTGRES_PASSWORD: postgres
+
+  smart-home-monolith-db:
+    image: postgres:13
+    command: postgres -c 'max_connections=200'
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_smart_home_monolith:/var/lib/postgresql/data
+    networks:
+      - network-local
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: smart_home
+
+  kong-db:
+    image: postgres:13
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres_kong:/var/lib/postgresql/data
+    networks:
+      - network-local
+    environment:
+      POSTGRES_DB: kong
+      POSTGRES_USER: kong
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "kong"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: on-failure
+
+  # kong-db-migrations
+  kong-migrations:
+    image: kong/kong-gateway:3.8.0.0
+    command: kong migrations bootstrap
+    container_name: kong-migrations
+    networks:
+      - network-local
+    depends_on:
+      kong-db:
+        condition: service_healthy
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-db
+      KONG_PG_DATABASE: kong
+      KONG_PG_USER: postgres
+      KONG_PG_PASSWORD: postgres
+    restart: on-failure
+
+# kafka
+  kafka-service:
+    image: bitnami/kafka:latest
+    #    restart: always
+    hostname: kafka-service
+    environment:
+      KAFKA_ENABLE_KRAFT: yes
+      KAFKA_CFG_PROCESS_ROLES: broker,controller
+      KAFKA_CFG_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CFG_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CFG_LISTENERS: INTERNAL://:9094,CONTROLLER://:9093,EXTERNAL://:9092
+      KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_CFG_ADVERTISED_LISTENERS: INTERNAL://kafka-service:9094,EXTERNAL://localhost:9092
+      KAFKA_CFG_NODE_ID: 1
+      KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 1@kafka-service:9093
+      ALLOW_PLAINTEXT_LISTENER: yes
+      KAFKA_KRAFT_CLUSTER_ID: MqT00wb8STSuAfEFsrwaeA
+    ports:
+      - "9092:9092"
+    networks:
+      - network-local
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    ports:
+      - "9090:8080"
+    depends_on:
+      - kafka-service
+    environment:
+      KAFKA_CLUSTERS_0_BOOTSTRAP_SERVERS: kafka-service:9094
+      KAFKA_CLUSTERS_0_NAME: local
+    networks:
+      - network-local
+
+# kong api gateway
+  kong-ce:
+    image: kong/kong-gateway:3.8.0.0
+    container_name: kong
+    restart: on-failure
+    depends_on:
+      kong-db:
+        condition: service_healthy
+    networks:
+      - network-local
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-db
+      KONG_PG_DATABASE: kong
+      KONG_PG_USER: postgres
+      KONG_PG_PASSWORD: postgres
+      KONG_PROXY_LISTEN: 0.0.0.0:8000, 0.0.0.0:8443 ssl
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl
+      KONG_ADMIN_GUI_LISTEN: 0.0.0.0:8002, 0.0.0.0:8445 ssl
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://kong-ce:8001"]
+      interval: 5s
+      timeout: 2s
+      retries: 10
+
+    ports:
+      - "8000-8001:8000-8001/tcp"
+      - "8443:8443"
+      - "8444:8444"
+      - "8002:8002"
+
+volumes:
+  postgres_device_management_api:
+  postgres_smart_home_monolith:
+  postgres_kong:
+  redis_1_data:
+
+networks:
+  network-local:
+    driver: bridge

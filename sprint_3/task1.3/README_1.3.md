@@ -1,0 +1,1 @@
+- добавлена ERD для DeviceManagementApi

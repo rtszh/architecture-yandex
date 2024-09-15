@@ -1,0 +1,235 @@
+openapi: 3.0.0
+info:
+  title: Device Management REST API
+  version: 1.0.11
+paths:
+  /device/register/init:
+    post:
+      tags:
+        - device
+      summary: Add a new device to account
+      description: Add a new device to account
+      operationId: registerDeviceInit
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewDeviceRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceResponse'
+  /device/register/data/{messageId}:
+    get:
+      tags:
+        - device
+      summary: Find registered device by message ID
+      description: Find registered device by message ID
+      operationId: registerDeviceData
+      parameters:
+        - name: messageId
+          in: path
+          description: ID of message with data
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Return full data for device
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceDataResponse'
+  /device/telemetry/request/all:
+    post:
+      tags:
+        - device
+      summary: Request telemetry for device
+      description: Request telemetry for device
+      operationId: deviceTelemeteryRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceTelemetryRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceResponse'
+  /device/telemetry/request/latest:
+    post:
+      tags:
+        - device
+      summary: Request telemetry for device
+      description: Request telemetry for device
+      operationId: deviceTelemeteryRequest
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceTelemetryRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceResponse'
+  /device/telemetry/data/{messageId}:
+    get:
+      tags:
+        - device
+      summary: Find telemetry data by message ID
+      description: Find telemetry data by message ID
+      operationId: registerDeviceData
+      parameters:
+        - name: messageId
+          in: path
+          description: ID of message with data
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Return full data for device
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceDataResponse'
+  /device/action:
+    post:
+      tags:
+        - device
+      summary: Do action with device
+      description: Do action with device
+      operationId: deviceAction
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeviceActionRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeviceActionResponse'
+
+components:
+  schemas:
+    NewDeviceRequest:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int64
+          example: 12345678
+        serialNumber:
+          type: string
+          example: 12345678
+    DeviceTelemetryRequest:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int64
+          example: 12345678
+        serialNumber:
+          type: string
+          example: 12345678 
+    DeviceActionRequest:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int64
+          example: 12345678
+        serialNumber:
+          type: string
+          example: 12345678
+        actionType:
+          type: string
+          example: SET_LIGHT_MODE
+        actionValue:
+          type: string
+          example: ON
+    DeviceResponse:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          format: int64
+          example: 12345678
+        serialNumber:
+          type: string
+          example: 12345678
+        messageId:
+          type: string
+          example: abcdef
+    DeviceActionResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: 12345678
+    DeviceDataResponse:
+      type: object
+      properties:
+        accountId:
+            type: integer
+            format: int64
+            example: 12345678
+          serialNumber:
+            type: string
+            example: 12345678
+          name:
+            type: string
+            example: 12345678
+          description:
+            type: string
+            example: 12345678
+          deviceType:
+            type: string
+            example: 12345678
+          deviceActions:
+            type: array
+            items:
+              $ref: '#/components/schemas/DeviceAction'
+    DeviceTelemetryResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: 12345678
+        accountId:
+          type: integer
+          format: int64
+          example: 12345678
+        serialNumber:
+          type: string
+          example: 12345678
+        updatedAt:
+          type: string
+          example: 12345678
+        data:
+          type: object
+    DeviceAction:
+      properties:
+        action:
+          type: string
+        value:
+          type: array
+          items:
+            anyOf:
+              - type: string
