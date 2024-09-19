@@ -1,9 +1,0 @@
-/Users/artursaznev/Documents/03_courses/architecture_yandex/sprint_3/source_architecture-sprint-3-main/smart-home-monolith/src/main/java/ru/yandex/practicum/smarthome/SmartHomeApplication.java
-/Users/artursaznev/Documents/03_courses/architecture_yandex/sprint_3/source_architecture-sprint-3-main/smart-home-monolith/src/main/java/ru/yandex/practicum/smarthome/controller/HeatingSystemController.java
-/Users/artursaznev/Documents/03_courses/architecture_yandex/sprint_3/source_architecture-sprint-3-main/smart-home-monolith/src/main/java/ru/yandex/practicum/smarthome/dto/HeatingSystemDto.java
-/Users/artursaznev/Documents/03_courses/architecture_yandex/sprint_3/source_architecture-sprint-3-main/smart-home-monolith/src/main/java/ru/yandex/practicum/smarthome/entity/HeatingSystem.java
-/Users/artursaznev/Documents/03_courses/architecture_yandex/sprint_3/source_architecture-sprint-3-main/smart-home-monolith/src/main/java/ru/yandex/practicum/smarthome/entity/TemperatureSensor.java
-/Users/artursaznev/Documents/03_courses/architecture_yandex/sprint_3/source_architecture-sprint-3-main/smart-home-monolith/src/main/java/ru/yandex/practicum/smarthome/repository/HeatingSystemRepository.java
-/Users/artursaznev/Documents/03_courses/architecture_yandex/sprint_3/source_architecture-sprint-3-main/smart-home-monolith/src/main/java/ru/yandex/practicum/smarthome/repository/TemperatureSensorRepository.java
-/Users/artursaznev/Documents/03_courses/architecture_yandex/sprint_3/source_architecture-sprint-3-main/smart-home-monolith/src/main/java/ru/yandex/practicum/smarthome/service/HeatingSystemService.java
-/Users/artursaznev/Documents/03_courses/architecture_yandex/sprint_3/source_architecture-sprint-3-main/smart-home-monolith/src/main/java/ru/yandex/practicum/smarthome/service/HeatingSystemServiceImpl.java
