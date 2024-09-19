@@ -108,7 +108,7 @@ services:
       KONG_DATABASE: postgres
       KONG_PG_HOST: kong-db
       KONG_PG_DATABASE: kong
-      KONG_PG_USER: postgres
+      KONG_PG_USER: kong
       KONG_PG_PASSWORD: postgres
     restart: on-failure
 
@@ -160,7 +160,7 @@ services:
       KONG_DATABASE: postgres
       KONG_PG_HOST: kong-db
       KONG_PG_DATABASE: kong
-      KONG_PG_USER: postgres
+      KONG_PG_USER: kong
       KONG_PG_PASSWORD: postgres
       KONG_PROXY_LISTEN: 0.0.0.0:8000, 0.0.0.0:8443 ssl
       KONG_ADMIN_LISTEN: 0.0.0.0:8001, 0.0.0.0:8444 ssl

@@ -10,12 +10,12 @@ import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequiredArgsConstructor
-public class MutationController {
+public class ActionController {
 
     private final DeviceActionService service;
 
     @PostMapping("/device/action")
-    public CompletableFuture<ResponseEntity<DeviceActionResponse>> deviceRegisterInit(@RequestBody DeviceActionRequest request) {
+    public CompletableFuture<ResponseEntity<DeviceActionResponse>> action(@RequestBody DeviceActionRequest request) {
         return service.action(request)
                 .thenApply(ResponseEntity::ok);
     }

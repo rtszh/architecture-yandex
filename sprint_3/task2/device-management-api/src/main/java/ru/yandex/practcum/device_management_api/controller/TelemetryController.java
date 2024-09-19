@@ -13,14 +13,27 @@ import java.util.concurrent.CompletableFuture;
 public class TelemetryController {
     private final DeviceTelemetryService service;
 
-    @PostMapping("/device/telemetry/request/all")
-    public CompletableFuture<ResponseEntity<DeviceResponse>> deviceTelemetryRequestAll(@RequestBody DeviceTelemetryRequest request) {
+    @GetMapping("/device/telemetry/all")
+    public CompletableFuture<ResponseEntity<DeviceResponse>> deviceTelemetryRequestAll(@RequestParam(name = "accountId") Long accountId,
+                                                                                       @RequestParam(name = "serialNumber") String serialNumber) {
+
+        DeviceTelemetryRequest request = DeviceTelemetryRequest.builder()
+                .accountId(accountId)
+                .serialNumber(serialNumber)
+                .build();
+
         return service.requestTelemetry(request, "ALL")
                 .thenApply(ResponseEntity::ok);
     }
 
-    @PostMapping("/device/telemetry/request/latest")
-    public CompletableFuture<ResponseEntity<DeviceResponse>> deviceTelemetryRequestLatest(@RequestBody DeviceTelemetryRequest request) {
+    @GetMapping("/device/telemetry/latest")
+    public CompletableFuture<ResponseEntity<DeviceResponse>> deviceTelemetryRequestLatest(@RequestParam(name = "accountId") Long accountId,
+                                                                                          @RequestParam(name = "serialNumber") String serialNumber) {
+        DeviceTelemetryRequest request = DeviceTelemetryRequest.builder()
+                .accountId(accountId)
+                .serialNumber(serialNumber)
+                .build();
+
         return service.requestTelemetry(request, "LATEST")
                 .thenApply(ResponseEntity::ok);
     }

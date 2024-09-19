@@ -44,19 +44,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeviceDataResponse'
-  /device/telemetry/request/all:
-    post:
+  /device/telemetry/all:
+    get:
       tags:
         - device
       summary: Request telemetry for device
       description: Request telemetry for device
-      operationId: deviceTelemeteryRequest
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DeviceTelemetryRequest'
-        required: true
+      operationId: deviceTelemeteryRequestAll
+      parameters:
+        - name: accountId
+          in: query
+          description: ID of message with data
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: serialNumber
+          in: query
+          description: ID of message with data
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Successful operation
@@ -64,19 +72,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DeviceResponse'
-  /device/telemetry/request/latest:
-    post:
+  /device/telemetry/latest:
+    get:
       tags:
         - device
       summary: Request telemetry for device
       description: Request telemetry for device
-      operationId: deviceTelemeteryRequest
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/DeviceTelemetryRequest'
-        required: true
+      operationId: deviceTelemeteryRequestLatest
+      parameters:
+        - name: accountId
+          in: query
+          description: ID of message with data
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: serialNumber
+          in: query
+          description: ID of message with data
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: Successful operation
@@ -90,7 +106,7 @@ paths:
         - device
       summary: Find telemetry data by message ID
       description: Find telemetry data by message ID
-      operationId: registerDeviceData
+      operationId: findTelemetryData
       parameters:
         - name: messageId
           in: path
@@ -138,16 +154,6 @@ components:
         serialNumber:
           type: string
           example: 12345678
-    DeviceTelemetryRequest:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          format: int64
-          example: 12345678
-        serialNumber:
-          type: string
-          example: 12345678 
     DeviceActionRequest:
       type: object
       properties:
@@ -187,25 +193,25 @@ components:
       type: object
       properties:
         accountId:
-            type: integer
-            format: int64
-            example: 12345678
-          serialNumber:
-            type: string
-            example: 12345678
-          name:
-            type: string
-            example: 12345678
-          description:
-            type: string
-            example: 12345678
-          deviceType:
-            type: string
-            example: 12345678
-          deviceActions:
-            type: array
-            items:
-              $ref: '#/components/schemas/DeviceAction'
+          type: integer
+          format: int64
+          example: 12345678
+        serialNumber:
+          type: string
+          example: 12345678
+        name:
+          type: string
+          example: 12345678
+        description:
+          type: string
+          example: 12345678
+        deviceType:
+          type: string
+          example: 12345678
+        deviceActions:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceAction'
     DeviceTelemetryResponse:
       type: object
       properties:

@@ -18,6 +18,7 @@
 - отсутствуют ответы на действия (*actions*), отправленные из сервиса *device-management-api*. То есть, когда *device-management-api* отправляет сообщение на *device-api-adapter*, то выглядит так, как будто *device-api-adapter* просто отправляет *REST*-запрос на соответствующее устройство, чтобы оно выполнило действие. После этого *device-api-adapter* не отдает никаких ответов;
 - интеграция *smart-home-monolith* с *kafka* приведена для примера для самого простого действия. Детали опущены;
 - не реализован кеш для телеметрии;
+- не реализованы сервисы, относящиеся к доменам *telemetry, account*. Минимальный набор данных и логики для получения телеметрии добавлен в *device management api*;
 
 #### 3. Как запустить проект
 #### 3.1. Docker compose
@@ -116,10 +117,7 @@ curl -XGET -H "Content-type: application/json" 'http://localhost:8000/device-man
 #### 4.2. Запрос на получение телеметрии для устройства
 1. отправляем запрос на *gateway* для получения всей истории телеметрии для устройства:
 ```sh
-curl -XPOST -H "Content-type: application/json" -d '{
-    "accountId": 1,
-    "serialNumber": "serNum1"
-}' 'http://localhost:8000/device-management/device/telemetry/request/all'
+curl -XGET -H "Content-type: application/json" 'http://localhost:8000/device-management/device/telemetry/all?accountId=1&serialNumber=serNum1'
 ```
 2. ответ:
 ```json
