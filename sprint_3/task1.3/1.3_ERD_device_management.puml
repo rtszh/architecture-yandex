@@ -1,0 +1,20 @@
+@startuml
+
+class Device {
+  +Long id
+  +String name
+  +String description
+  +String serialNumber
+  +String deviceType
+  +Long accountId
+}
+
+class DeviceAction {
+  +Long id
+  +Long deviceId
+  +String type
+  +String value
+}
+
+Device "1" -- "1..*" DeviceAction : has
+@enduml

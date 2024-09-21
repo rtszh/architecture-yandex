@@ -1,0 +1,24 @@
+@startuml
+
+class Account {
+  +Long id
+  +String name
+  +String email
+  +List<Modules> modules
+  +List<House> houses
+}
+
+class House {
+  +Long id
+  +String name
+  +List<Long> deviceIds
+}
+
+class Module {
+  +Long id
+  +Long name
+}
+
+Account "1" -- "0..*" House : has
+Account "1" -- "0..*" Module : has
+@enduml

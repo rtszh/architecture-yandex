@@ -1,0 +1,26 @@
+@startuml
+title Account Api Component Diagram
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Container_Boundary(Account, "") {
+  Container(AccountApi, "Account Api", "Java, Spring", "Processes user interactions with devices")
+  Container(AccountDatabase, "Account Database", "PostgreSQL", "Database for devices")
+}
+
+Container(AccountApi, "Web Application", "Java, Spring") {
+  Component(RegistrationController, "RegistrationController", "Register new account")
+  Component(AccountInfoController, "AccountInfoController", "get account data")
+  Component(ServiceLayer1, "Service Layer 1", "Account registration logic")
+  Component(ServiceLayer2, "Service Layer 2", "Account info logic")
+  Component(RepositoryLayer1, "Repository Layer1", "Device data access logic")
+}
+
+Rel(RegistrationController,ServiceLayer1,"Calls business logic")
+Rel(AccountInfoController,ServiceLayer2,"Calls business logic")
+Rel(ServiceLayer1,RepositoryLayer1,"Reads/Writes data")
+Rel(ServiceLayer2,RepositoryLayer1,"Reads/Writes data")
+Rel(RepositoryLayer1,AccountDatabase,"Reads/Writes device data")
+@enduml
