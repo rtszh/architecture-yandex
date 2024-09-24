@@ -1,0 +1,66 @@
+@startuml
+title Smart Home Ecosystem Container Diagram
+
+top to bottom direction
+
+!includeurl https://raw.githubusercontent.com/RicardoNiepel/C4-PlantUML/master/C4_Component.puml
+
+Person(user1, "User", "A user of the smart home system")
+Person(user2, "User", "A user of the smart home system")
+System(DeviceManagement, "Device Management", "Managing users devices")
+System(Telemetry, "Telemetry", "Telemetry data")
+System(Account, "Account", "Processing requests with user accounts data")
+System(DevicesApi, "Devices Api", "Services for exchange data with devices")
+
+Container(WebApp, "WebUI", "React, JS", "Handles user interactions")
+Container(MobileApp, "MobileApp", "Kotlin, Swift", "Handles user interactions")
+
+Container(UserApiGateway, "User Api Gateway", "Kong", "Handles user requests and save them to the message queue")
+
+Container_Boundary(Account, "") {
+  Container(AccountApi, "Account Api", "Java, Spring", "Processes information about user accounts")
+  Container(AccountDb, "DB for accounts", "PostgreSQL", "")
+}
+
+Container_Boundary(DeviceManagement, "") {
+  Container(DeviceManagementApi, "Device Management Api", "Java, Spring", "Processes user interactions with devices")
+  Container(DeviceManagementDatabase, "Device Management Database", "PostgreSQL", "Database for devices")
+  Container(DeviceManagementCache, "Device Management Cache", "Redis", "Cache for telemetry")
+}
+
+Container_Boundary(Telemetry, "") {
+  Container(TelemetryApi, "Telemetry Api", "Java, Spring", "Processes user interactions with devices")
+  Container(TelemetryCache, "Telemetry Cache", "Redis", "Telemetry cache")
+}
+
+Container_Boundary(DevicesApi, "") {
+  Container(DeviceApiAdapter, "Device Api Adapter", "Java, Spring", "Adapter for manipulating state and get telemetry data from devices")
+}
+
+Container(MessageBus, "Message Bus", "Kafka", "Events from services are located in the corresponding topics")
+
+System_Ext(DeviceApi, "Device API", "External API for device data integration")
+
+Rel(user1, WebApp, "Uses the system via Web")
+Rel(user2, MobileApp, "Uses the system via Mobile App")
+Rel(WebApp, UserApiGateway, "Request", "REST")
+Rel(MobileApp, UserApiGateway, "Request", "REST")
+Rel(UserApiGateway, DeviceManagementApi, "uses", "REST")
+Rel(UserApiGateway, TelemetryApi, "uses", "REST")
+Rel(UserApiGateway, AccountApi, "uses", "REST")
+
+Rel(DeviceManagementApi, MessageBus, "publish message for interactions with devices", "async")
+Rel(DeviceManagementApi, DeviceManagementDatabase, "")
+Rel(DeviceManagementApi, DeviceManagementCache, "")
+Rel(DeviceManagementApi, AccountApi, "REST")
+
+Rel(DeviceApiAdapter, MessageBus, "subscribe for messages that mutate device state or get telemetry data", "async")
+Rel(DeviceApiAdapter, DeviceApi, "mutate device state or get telemetry data", "REST")
+
+Rel(TelemetryApi, TelemetryCache, "")
+Rel(TelemetryApi, MessageBus, "publish message for interactions with devices", "async")
+Rel(TelemetryApi, AccountApi, "REST")
+
+Rel(AccountApi, AccountDb, "")
+
+@enduml

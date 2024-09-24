@@ -1,0 +1,1 @@
+INSERT INTO account (name, email) VALUES ('Ivan Ivanov', 'iviv@yandex.ru');

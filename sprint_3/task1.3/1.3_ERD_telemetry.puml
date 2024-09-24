@@ -1,0 +1,9 @@
+@startuml
+
+class TelemetryData {
+  +Long id
+  +String data
+  +Long deviceId
+}
+
+@enduml
