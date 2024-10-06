@@ -1,0 +1,18 @@
+title Write orders\n
+
+
+
+participant Operator
+
+participant MES API
+
+participant Cache
+participant MES DB
+
+
+Operator->MES API:Request
+MES API->Cache:Request for update order
+Cache->MES DB:Query for update order
+Cache<-MES DB:Order updated in DB
+MES API<-Cache:Order updated in Cache and DB
+Operator<-MES API:Response

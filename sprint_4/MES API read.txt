@@ -1,0 +1,18 @@
+title Read orders\n
+
+
+
+participant Operator
+
+participant MES API
+
+participant Cache
+participant MES DB
+
+
+Operator->MES API:Request
+MES API->Cache:Request for orders with states
+Cache->MES DB:Query for orders with states
+Cache<-MES DB:Save orders to cache
+MES API<-Cache:Orders from cache
+Operator<-MES API:Orders response
