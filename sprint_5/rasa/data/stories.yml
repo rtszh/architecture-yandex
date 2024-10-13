@@ -1,0 +1,45 @@
+version: "3.1"
+
+stories:
+
+- story: archpatterns_happy_path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: arch_patterns
+  - action: utter_archpatterns
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: archpatterns_sad_path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: arch_patterns
+  - action: utter_archpatterns
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_sad
+  - action: utter_goodbye
+
+- story: techstack_happ_path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: tech_stack
+  - action: utter_techstack
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: techstack_sad_path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: tech_stack
+  - action: utter_techstack
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_sad
+  - action: utter_goodbye

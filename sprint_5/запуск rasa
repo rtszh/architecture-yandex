@@ -1,0 +1,5 @@
+Команда для запуска с дебагом:
+rasa run --enable-api --debug
+
+Команда для визуализации stories:
+rasa visualize

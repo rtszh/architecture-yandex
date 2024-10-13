@@ -1,0 +1,13 @@
+version: "3.1"
+
+rules:
+
+- rule: Попрощаться когда пользователь прощается
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Сказать 'Я бот' когда пользователь поинтересуется с кем он общается
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
