@@ -1,0 +1,39 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - bot_challenge
+  - arch_patterns
+  - tech_stack
+
+responses:
+  utter_greet:
+  - text: "Здравствуй! Чем могу помочь?"
+
+  utter_did_that_help:
+  - text: "Помогло?"
+
+  utter_happy:
+  - text: "Отлично!"
+
+  utter_sad:
+  - text: "Очень жаль"
+
+  utter_goodbye:
+  - text: "Счастливо!"
+
+  utter_iamabot:
+  - text: "Я бот, который разработали в Rasa."
+
+  utter_techstack:
+  - text: "Я рекомендую Java + Spring boot"
+
+  utter_archpatterns:
+  - text: "Популярные архитектурные паттерны включают MVC, CQRS и Event Sourcing."
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
