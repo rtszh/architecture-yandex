@@ -1,0 +1,1 @@
+- скрипт для запуска pods и services: 1_pods.sh
