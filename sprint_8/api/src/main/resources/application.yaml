@@ -1,0 +1,10 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: sprint8-oauth-resource-server
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://keycloak:8080/realms/reports-realm/protocol/openid-connect/certs
