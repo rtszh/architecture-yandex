@@ -1,0 +1,97 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.5.3 Chrome/124.0.6367.207 Electron/30.0.6 Safari/537.36" modified="2025-01-26T16:46:33.859Z" etag="w4jpar1WxX1OP7F72Xf9" version="24.5.3" type="device">
+  <diagram id="51zmUan4mFf6pz3q3UUt" name="exc3.2_3.3">
+    <mxGraphModel dx="3009" dy="-1851" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="q5P8Pr759PZ-WM4mgRXX-123" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Результаты Q1:&lt;/h1&gt;&lt;div&gt;1. Для домена медицинских сервисов и домена финтеха развернута инфраструктура, в которой будут храниться данные для аналитики в целевом виде;&lt;/div&gt;&lt;div&gt;2. Начата работа созданию накоплению данных в Dremio (Data lakehouse) вместо legacy-DWH внутри каждого домена;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="60" y="4200" width="520" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-1" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="3710" width="180" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-3" value="Q1" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="110" y="3660" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-4" value="&lt;span style=&quot;&quot;&gt;Развернуть инфраструктуру для data lakehouse (Dremio) для домена медицинских сервисов и домена финтеха&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="60" y="3740" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="240" y="3710" width="180" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-7" value="Q2" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="290" y="3660" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-9" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="420" y="3710" width="180" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-10" value="Q3" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="470" y="3660" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-12" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="3710" width="180" height="420" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-13" value="Q4" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="650" y="3660" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-14" value="Настроить поставку данных из операционных данных в data lakehouse в соответствующих доменах" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="60" y="3830" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-11" value="Создать пайплайн поставки аналитических данных из Dremio в datahub для соответствующих доменов" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="420" y="3830" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-5" value="&lt;span style=&quot;&quot;&gt;Развернуть datahub&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="240" y="3740" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-15" value="&lt;span style=&quot;&quot;&gt;Развернуть инфраструктуру для DS (Apache Spark)&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="420" y="3740" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-16" value="&lt;span style=&quot;&quot;&gt;Подготовить пайплайн развертывания ML-сервиса&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="600" y="3740" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-17" value="&lt;span style=&quot;&quot;&gt;Интегрировать Apache spark с datahub - получение данных и пилоты ML-проектов&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="600" y="4000" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-18" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="R4u_XiCmdboSZVw8Royd-1" target="R4u_XiCmdboSZVw8Royd-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="360" y="3900" as="sourcePoint" />
+            <mxPoint x="410" y="3850" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-19" value="" style="endArrow=none;dashed=1;html=1;rounded=0;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="60" y="3980" as="sourcePoint" />
+            <mxPoint x="780" y="3980" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-20" value="Команда инфраструктуры&lt;div&gt;(4)&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-130" y="3750" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-21" value="Команда data engineer&#39;ов&lt;div&gt;(8)&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-130" y="3845" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-22" value="Команда data scientist&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;(3)&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-120" y="4040" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-23" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Результаты Q2:&lt;/h1&gt;&lt;div&gt;1. Развернута инфраструктура для Datahub в масштабируемом и отказоустойчивом варианте;&lt;/div&gt;&lt;div&gt;2. Закончена работа по поставке операционных данных в Dremio (Data lakehouse) внутри соответствующих доменов. Теперь каждый домен умеет накаливать сырые данные, полученные из операционных данных;&lt;/div&gt;&lt;div&gt;3. Начата работа по созданию поставки данных из legacy-DWH в Dremio для соответствующих доменов;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="4320" width="520" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-26" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Результаты Q3:&lt;/h1&gt;&lt;div&gt;1. Развернута инфраструктура для Apache Spark в отказоустойчивом варианте;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;2. Закончена&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;работа по созданию поставки данных из legacy-DWH в Dremio для соответствующих доменов. Это позволит сохранить те архивные данные, которые нужны для аналитики и дальнейшей работы бизнеса&lt;/span&gt;&lt;/div&gt;&lt;div&gt;3. Начата работа по созданию поставки аналитических данных из Dremio в Datahub;&lt;/div&gt;&lt;div&gt;4. Apache Spark интегрирован с Dremio. Теперь можно получать сырые данные из Dremio для ML&lt;br&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="4490" width="520" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-27" value="Настроить поставку данных из legacy-DWH в Dremio - для архивных данных, которые нужно сохранить" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="240" y="3905" width="360" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-28" value="Создание пилотных data product&#39;ов" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="600" y="3905" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-29" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Результаты Q4:&lt;/h1&gt;&lt;div&gt;1. Развернута инфраструктура для развертывания ML-сервисов для каждого домена;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;2. Закончена&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;работа по созданию поставки аналитических данных из Dremio в Datahub. Теперь данные из каждого домена есть в Datahub;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;3. Закончена работа по созданию пилотных Data product&#39;ов. Каждый домен создал несколько Data product&#39;ов и разобрался как работать с новой системой;&lt;/div&gt;&lt;div&gt;4. Apache Spark интегрирован с datahub. Теперь данные для обучения можно получать из datahub&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="60" y="4660" width="520" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="R4u_XiCmdboSZVw8Royd-30" value="&lt;span style=&quot;&quot;&gt;Интегрировать Apache spark с dremio - получение данных и пилоты ML-проектов&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;align=left;" vertex="1" parent="1">
+          <mxGeometry x="420" y="4000" width="180" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
